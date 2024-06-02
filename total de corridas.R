@@ -6,6 +6,29 @@ library(ggplot2)
 y <- 8
 subsets <- permutations(n= 2, r= y, v= c(1,0), repeats.allowed = TRUE)
 
+duración <- function(x) {
+  n <- length(x)
+  corridas <- numeric(1)
+  dias <- numeric(1)
+  dur <- numeric(1)
+  k <- 1
+  if (all(x[1:n]==0)) {
+    dur <- 0
+  } else {
+    
+    for (j in 1:n) {
+      for (i in 1:(n-k+1)) {
+        if (all(x[i:(i+k-1)]==1)) 
+        {dias <- dias+k
+        corridas <- corridas+1
+        } else {}
+      }
+      k <- k+1
+    }
+    dur <- dias/corridas
+  }  
+  return(dur)
+}
 
 corridas <- function(x) {
   n <- length(x)
